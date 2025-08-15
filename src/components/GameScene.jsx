@@ -149,7 +149,7 @@ export default function GameScene({ score, setScore }){
     function rectOverlap(ax,ay,aw,ah,bx,by,bw,bh){ return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by }
 
     // MediaPipe Hands integration
-    let hands = null, camera = null, videoEl = null
+    let hands = null, videoEl = null
     async function initHands(){
       try{
         if(typeof Hands === 'undefined'){ console.warn('MediaPipe Hands not loaded'); const preview = document.getElementById('cameraPreview'); if(preview) preview.style.display='none'; return }
@@ -189,7 +189,7 @@ export default function GameScene({ score, setScore }){
     window.addEventListener('keydown', (e)=>{ keys[e.key] = true; if(e.key === 's' || e.key === 'S'){ if(targetLetter){ try{ const u = new SpeechSynthesisUtterance('Catch the letter ' + targetLetter); u.rate=0.95; window.speechSynthesis.cancel(); window.speechSynthesis.speak(u) }catch(e){} } } })
     window.addEventListener('keyup', (e)=>{ keys[e.key] = false })
 
-    let lastHandXNorm = 0.5
+    lastHandXNorm = 0.5
 
     // teacher analytics: localStorage
     function loadRounds(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') } catch(e){ return [] } }
